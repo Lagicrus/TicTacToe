@@ -1,20 +1,41 @@
 import React from "react";
-import {Grid} from "@mui/material";
 import Cell from "./cell";
+import {styled} from "@mui/material/styles";
+
+const ColouredBack = styled("div")({
+  backgroundColor: "white",
+  width: "fit-content",
+  margin: "0 auto"
+});
+
+const Row = styled("div")({
+  display: "flex",
+  flexDirection: "row",
+  gap: 10,
+  marginBottom: 10
+});
 
 function Board() {
   return (
-    <Grid container spacing={2}>
-      <Cell/>
-      <Cell/>
-      <Cell/>
-      <Cell/>
-      <Cell/>
-      <Cell/>
-      <Cell/>
-      <Cell/>
-      <Cell/>
-    </Grid>
+    <div>
+      <ColouredBack>
+        <Row>
+          <Cell/>
+          <Cell/>
+          <Cell/>
+        </Row>
+        <Row>
+          <Cell/>
+          <Cell/>
+          <Cell/>
+        </Row>
+        <Row>
+          <Cell/>
+          <Cell/>
+          <Cell/>
+        </Row>
+      </ColouredBack>
+    </div>
   );
 }
 
