@@ -2,13 +2,13 @@ import React from "react";
 import {Box} from "@mui/material";
 import {styled} from "@mui/material/styles";
 
-const ColouredBox = styled(Box)({
+const ColouredBox = styled(Box)(({theme}) => ({
   height: "200px",
-  backgroundColor: "pink",
+  backgroundColor: theme.palette.grey["900"],
   width: "200px"
-});
+}));
 
-function Cell({className}) {
+function Cell() {
   return (
     <ColouredBox/>
   );

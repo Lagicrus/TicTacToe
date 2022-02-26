@@ -27,7 +27,7 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "plugin:react/recommended"
     ]
   },
   "browserslist": {
@@ -49,6 +49,8 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^8.9.0"
+    "eslint": "^8.9.0",
+    "eslint-plugin-react": "^7.29.2",
+    "prop-types": "^15.8.1"
   }
 }

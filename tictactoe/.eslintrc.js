@@ -98,6 +98,7 @@ module.exports = {
     "react-hooks/exhaustive-deps": OFF,
     "comma-dangle": [ERROR, "never"],
     "brace-style": ERROR,
-    "object-curly-spacing": [ERROR, "never"]
+    "object-curly-spacing": [ERROR, "never"],
+    "react/prop-types": ERROR
   }
 };
