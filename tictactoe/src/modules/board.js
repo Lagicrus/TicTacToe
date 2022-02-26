@@ -1,6 +1,7 @@
 import React from "react";
 import Cell from "./cell";
 import {styled} from "@mui/material/styles";
+import PropTypes from "prop-types";
 
 const ColouredBack = styled("div")({
   backgroundColor: "white",
@@ -15,28 +16,33 @@ const Row = styled("div")({
   marginBottom: 10
 });
 
-function Board() {
+function Board({isPlayer1Turn, setIsPlayer1Turn}) {
   return (
     <div>
       <ColouredBack>
         <Row>
-          <Cell/>
-          <Cell/>
-          <Cell/>
+          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
+          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
+          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
         </Row>
         <Row>
-          <Cell/>
-          <Cell/>
-          <Cell/>
+          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
+          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
+          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
         </Row>
         <Row>
-          <Cell/>
-          <Cell/>
-          <Cell/>
+          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
+          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
+          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
         </Row>
       </ColouredBack>
     </div>
   );
 }
+
+Board.propTypes = {
+  isPlayer1Turn: PropTypes.bool.isRequired,
+  setIsPlayer1Turn: PropTypes.func.isRequired
+};
 
 export default Board;

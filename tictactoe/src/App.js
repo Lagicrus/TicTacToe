@@ -25,7 +25,7 @@ function App() {
       <div className={center}>
         <Container maxWidth="md">
           <CurrentPlayer isPlayer1Turn={isPlayer1Turn}/>
-          <Board/>
+          <Board isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
           <Players player1Score={player1Score} player2Score={player2Score}/>
         </Container>
       </div>
