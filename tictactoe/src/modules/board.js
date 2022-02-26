@@ -16,24 +16,24 @@ const Row = styled("div")({
   marginBottom: 10
 });
 
-function Board({isPlayer1Turn, setIsPlayer1Turn}) {
+function Board({handlePlayClick, items}) {
   return (
     <div>
       <ColouredBack>
         <Row>
-          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
-          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
-          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
+          <Cell handlePlayClick={handlePlayClick} row={0} column={0} items={items}/>
+          <Cell handlePlayClick={handlePlayClick} row={0} column={1} items={items}/>
+          <Cell handlePlayClick={handlePlayClick} row={0} column={2} items={items}/>
         </Row>
         <Row>
-          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
-          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
-          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
+          <Cell handlePlayClick={handlePlayClick} row={1} column={0} items={items}/>
+          <Cell handlePlayClick={handlePlayClick} row={1} column={1} items={items}/>
+          <Cell handlePlayClick={handlePlayClick} row={1} column={2} items={items}/>
         </Row>
         <Row>
-          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
-          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
-          <Cell isPlayer1Turn={isPlayer1Turn} setIsPlayer1Turn={setIsPlayer1Turn}/>
+          <Cell handlePlayClick={handlePlayClick} row={2} column={0} items={items}/>
+          <Cell handlePlayClick={handlePlayClick} row={2} column={1} items={items}/>
+          <Cell handlePlayClick={handlePlayClick} row={2} column={2} items={items}/>
         </Row>
       </ColouredBack>
     </div>
@@ -41,8 +41,8 @@ function Board({isPlayer1Turn, setIsPlayer1Turn}) {
 }
 
 Board.propTypes = {
-  isPlayer1Turn: PropTypes.bool.isRequired,
-  setIsPlayer1Turn: PropTypes.func.isRequired
+  handlePlayClick: PropTypes.func.isRequired,
+  items: PropTypes.array.isRequired
 };
 
 export default Board;

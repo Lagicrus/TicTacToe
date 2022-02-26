@@ -16,27 +16,29 @@ const ColouredBox = styled(Box)(({theme}) => ({
   fontSize: 96
 }));
 
-function Cell({isPlayer1Turn, setIsPlayer1Turn}) {
-  const [playerClicked, setPlayerClicked] = React.useState(0);
-
+function Cell({handlePlayClick, row, column, items}) {
   const onClick = () => {
-    setPlayerClicked(isPlayer1Turn ? 1 : 2);
-    setIsPlayer1Turn(!isPlayer1Turn);
+    handlePlayClick(row, column);
   };
+
+  const currentCell = items[row][column];
+
 
   return (
     <ColouredBox
       onClick={onClick}
     >
-      {playerClicked === 1 && <CloseIcon className={icon} fontSize="inherit"/>}
-      {playerClicked === 2 && <CircleOutlinedIcon className={icon} fontSize="inherit"/>}
+      {currentCell === 1 && <CloseIcon className={icon} fontSize="inherit"/>}
+      {currentCell === 2 && <CircleOutlinedIcon className={icon} fontSize="inherit"/>}
     </ColouredBox>
   );
 }
 
 Cell.propTypes = {
-  isPlayer1Turn: PropTypes.bool.isRequired,
-  setIsPlayer1Turn: PropTypes.func.isRequired
+  handlePlayClick: PropTypes.func.isRequired,
+  row: PropTypes.number.isRequired,
+  column: PropTypes.number.isRequired,
+  items: PropTypes.array.isRequired
 };
 
 export default Cell;
