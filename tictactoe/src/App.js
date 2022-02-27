@@ -6,6 +6,7 @@ import styles from "./styles.module.css";
 import Players from "./modules/players";
 import TitleBar from "./modules/titleBar";
 import PopupMessage from "./modules/popupMessage";
+import {allEqual} from "./tools";
 
 const {center} = styles;
 
@@ -22,13 +23,17 @@ function App() {
   const [isPlayer1Turn, setIsPlayer1Turn] = React.useState(true);
   const [items, setItems] = React.useState([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
   const [popupMessage, setPopupMessage] = React.useState("");
-  const [is1PlayerMode, setIs1PlayerMode] = React.useState(false);
+  const [is1PlayerMode, setIs1PlayerMode] = React.useState(true);
   const [checking, setChecking] = React.useState(false);
 
   const defaultItems = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 
-  function allEqual(array) {
-    return array.every((v) => v === array[0]);
+  function resetBoard() {
+    setItems(defaultItems);
+    setIsPlayer1Turn(true);
+    setPlayer1Score(0);
+    setPlayer2Score(0);
+    setTieScore(0);
   }
 
   const handlePlayClick = (row, col) => {
@@ -154,7 +159,12 @@ function App() {
       <div className={center}>
         <PopupMessage popupMessage={popupMessage}/>
         <Container maxWidth="md">
-          <TitleBar isPlayer1Turn={isPlayer1Turn} is1PlayerMode={is1PlayerMode} setIs1PlayerMode={setIs1PlayerMode}/>
+          <TitleBar
+            isPlayer1Turn={isPlayer1Turn}
+            is1PlayerMode={is1PlayerMode}
+            setIs1PlayerMode={setIs1PlayerMode}
+            resetBoard={resetBoard}
+          />
           <Board handlePlayClick={handlePlayClick} items={items}/>
           <Players player1Score={player1Score} player2Score={player2Score} tieScore={tieScore}/>
         </Container>
