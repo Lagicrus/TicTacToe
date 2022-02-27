@@ -130,6 +130,10 @@ function App() {
             setIsPlayer1Turn(true);
             break;
           }
+
+          if(!items[0].includes(0) && !items[1].includes(0) && !items[2].includes(0)) {
+            break;
+          }
         }
       }, 500);
     }
