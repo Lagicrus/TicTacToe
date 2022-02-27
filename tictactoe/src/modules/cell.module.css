@@ -4,3 +4,21 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.mdCell {
+  height: 200px;
+  width: 200px;
+  font-size: 96px;
+}
+
+.smCell {
+  height: 100px;
+  width: 100px;
+  font-size: 48px;
+}
+
+.xsmCell {
+  height: 50px;
+  width: 50px;
+  font-size: 24px;
+}

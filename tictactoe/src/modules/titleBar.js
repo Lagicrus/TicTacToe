@@ -1,45 +1,46 @@
 import React from "react";
-import {Box, IconButton, Tooltip, Typography} from "@mui/material";
+import {Grid, IconButton, Tooltip, Typography, useMediaQuery} from "@mui/material";
 import PropTypes from "prop-types";
 import PeopleIcon from "@mui/icons-material/People";
 import PersonIcon from "@mui/icons-material/Person";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import styles from "./titleBar.module.css";
 import {styled} from "@mui/material/styles";
 
-const StyledIconButtonRight = styled(IconButton)({
-  position: "absolute",
-  top: 0,
-  right: "25%",
-  transform: "translate(-50%, 25%)"
-});
+const {row} = styles;
 
-const StyledIconButtonLeft = styled(IconButton)({
-  position: "absolute",
-  top: 0,
-  left: "25%",
-  transform: "translate(-50%, 25%)"
+const StyledIconButton = styled(IconButton)({
+  top: "50%",
+  transform: "translateY(-50%)"
 });
 
 function TitleBar({isPlayer1Turn, is1PlayerMode, setIs1PlayerMode, resetBoard}) {
+  const md = useMediaQuery((theme) => theme.breakpoints.up("md"));
   const onClick = () => {
     setIs1PlayerMode(!is1PlayerMode);
   };
   return (
-    <Box sx={{position: "relative"}}>
-      <Tooltip title="Reset Board & Scores" arrow>
-        <StyledIconButtonLeft onClick={resetBoard}>
-          <RestartAltIcon />
-        </StyledIconButtonLeft>
-      </Tooltip>
-      <Typography variant="h3" textAlign="center" marginBottom={2}>
-        {isPlayer1Turn ? "Player 1" : "Player 2"}
-      </Typography>
-      <Tooltip title={is1PlayerMode ? "1 Player Mode" : "2 Player Mode"} arrow>
-        <StyledIconButtonRight onClick={onClick}>
-          {is1PlayerMode ? <PersonIcon/> : <PeopleIcon/>}
-        </StyledIconButtonRight>
-      </Tooltip>
-    </Box>
+    <Grid container spacing={3} className={row}>
+      <Grid item>
+        <Tooltip title="Reset Board & Scores" arrow>
+          <StyledIconButton onClick={resetBoard}>
+            <RestartAltIcon/>
+          </StyledIconButton>
+        </Tooltip>
+      </Grid>
+      <Grid item>
+        <Typography variant={md ? "h3" : "h5"} textAlign="center" marginBottom={2}>
+          {isPlayer1Turn ? "Player 1" : "Player 2"}
+        </Typography>
+      </Grid>
+      <Grid item>
+        <Tooltip title={is1PlayerMode ? "1 Player Mode" : "2 Player Mode"} arrow>
+          <StyledIconButton onClick={onClick}>
+            {is1PlayerMode ? <PersonIcon/> : <PeopleIcon/>}
+          </StyledIconButton>
+        </Tooltip>
+      </Grid>
+    </Grid>
   );
 }
 
