@@ -120,7 +120,7 @@ function App() {
   }, [items]);
 
   useEffect(() => {
-    if(!is1PlayerMode && !isPlayer1Turn) {
+    if(is1PlayerMode && !isPlayer1Turn) {
       setTimeout(() => {
         while(true) {
           const randomRow = Math.floor(Math.random() * 3);
