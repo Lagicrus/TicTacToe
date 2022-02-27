@@ -12,7 +12,7 @@ const StyledIconButton = styled(IconButton)({
   transform: "translate(-50%, 25%)"
 });
 
-function CurrentPlayer({isPlayer1Turn, is1PlayerMode, setIs1PlayerMode}) {
+function TitleBar({isPlayer1Turn, is1PlayerMode, setIs1PlayerMode}) {
   const onClick = () => {
     setIs1PlayerMode(!is1PlayerMode);
   };
@@ -30,10 +30,10 @@ function CurrentPlayer({isPlayer1Turn, is1PlayerMode, setIs1PlayerMode}) {
   );
 }
 
-CurrentPlayer.propTypes = {
+TitleBar.propTypes = {
   isPlayer1Turn: PropTypes.bool.isRequired,
   is1PlayerMode: PropTypes.bool.isRequired,
   setIs1PlayerMode: PropTypes.func.isRequired
 };
 
-export default CurrentPlayer;
+export default TitleBar;

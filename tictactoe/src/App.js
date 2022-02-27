@@ -4,7 +4,7 @@ import {Container, CssBaseline} from "@mui/material";
 import Board from "./modules/board";
 import styles from "./styles.module.css";
 import Players from "./modules/players";
-import CurrentPlayer from "./modules/currentPlayer";
+import TitleBar from "./modules/titleBar";
 import PopupMessage from "./modules/popupMessage";
 
 const {center} = styles;
@@ -154,7 +154,7 @@ function App() {
       <div className={center}>
         <PopupMessage popupMessage={popupMessage}/>
         <Container maxWidth="md">
-          <CurrentPlayer isPlayer1Turn={isPlayer1Turn} is1PlayerMode={is1PlayerMode} setIs1PlayerMode={setIs1PlayerMode}/>
+          <TitleBar isPlayer1Turn={isPlayer1Turn} is1PlayerMode={is1PlayerMode} setIs1PlayerMode={setIs1PlayerMode}/>
           <Board handlePlayClick={handlePlayClick} items={items}/>
           <Players player1Score={player1Score} player2Score={player2Score} tieScore={tieScore}/>
         </Container>
