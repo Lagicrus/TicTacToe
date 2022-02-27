@@ -1,11 +1,15 @@
 import React from "react";
-import {Grid, IconButton, Tooltip, Typography, useMediaQuery} from "@mui/material";
 import PropTypes from "prop-types";
+import IconButton from "@mui/material/IconButton";
+import Grid from "@mui/material/Grid";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
 import PeopleIcon from "@mui/icons-material/People";
 import PersonIcon from "@mui/icons-material/Person";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import styles from "./titleBar.module.css";
 import {styled} from "@mui/material/styles";
+import {useMediaQuery} from "@mui/material";
 
 const {row} = styles;
 

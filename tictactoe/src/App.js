@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
-import {Container, CssBaseline} from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import Container from "@mui/material/Container";
 import Board from "./modules/board";
 import styles from "./styles.module.css";
 import Players from "./modules/players";

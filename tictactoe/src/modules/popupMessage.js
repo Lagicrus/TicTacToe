@@ -1,5 +1,7 @@
 import React from "react";
-import {Box, Modal, Typography} from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 import PropTypes from "prop-types";
 
 const style = {

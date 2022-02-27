@@ -1,5 +1,6 @@
 import React from "react";
-import {Box, useMediaQuery} from "@mui/material";
+import {useMediaQuery} from "@mui/material";
+import Box from "@mui/material/Box";
 import {styled} from "@mui/material/styles";
 import PropTypes from "prop-types";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";

@@ -1,5 +1,6 @@
 import React from "react";
-import {Typography, useMediaQuery} from "@mui/material";
+import {useMediaQuery} from "@mui/material";
+import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 
 function Player({name, score, number, tie}) {
