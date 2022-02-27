@@ -18,6 +18,7 @@ const theme = createTheme({
 function App() {
   const [player1Score, setPlayer1Score] = React.useState(0);
   const [player2Score, setPlayer2Score] = React.useState(0);
+  const [tieScore, setTieScore] = React.useState(0);
   const [isPlayer1Turn, setIsPlayer1Turn] = React.useState(true);
   const [items, setItems] = React.useState([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
   const [popupMessage, setPopupMessage] = React.useState("");
@@ -44,6 +45,19 @@ function App() {
     }
   };
 
+  function popupHandler(message) {
+    setPopupMessage(message);
+    setTimeout(() => {
+      setItems(defaultItems);
+      setIsPlayer1Turn(true);
+      setPopupMessage("");
+    }, 2000);
+  }
+
+  function drawHandling() {
+    popupHandler("Draw!");
+  }
+
   function winHandling(row) {
     if(allEqual(row)) {
       if(row.includes(0)) {
@@ -55,12 +69,7 @@ function App() {
         setPlayer2Score(player2Score + 1);
       }
 
-      setPopupMessage(`Player ${row[0]} won!`);
-      setTimeout(() => {
-        setItems(defaultItems);
-        setIsPlayer1Turn(true);
-        setPopupMessage("");
-      }, 2000);
+      popupHandler(`Player ${row[0]} won!`);
       return true;
     }
     return false;
@@ -85,11 +94,28 @@ function App() {
         return;
       }
     }
+    for (const columnIndex of [0,1,2]) {
+      const column = items.map((columnIndexRow) => columnIndexRow[columnIndex]);
+      anyoneWon = winHandling(column);
+      if(anyoneWon) {
+        return;
+      }
+    }
     anyoneWon = winHandling(diagTLBR);
     if(anyoneWon) {
       return;
     }
     anyoneWon = winHandling(diagTRBL);
+
+    if(!anyoneWon) {
+      for(const row of items) {
+        if(row.includes(0)) {
+          return;
+        }
+      }
+    }
+    setTieScore(tieScore + 1);
+    drawHandling();
   }, [items]);
 
   return (
@@ -100,7 +126,7 @@ function App() {
         <Container maxWidth="md">
           <CurrentPlayer isPlayer1Turn={isPlayer1Turn}/>
           <Board handlePlayClick={handlePlayClick} items={items}/>
-          <Players player1Score={player1Score} player2Score={player2Score}/>
+          <Players player1Score={player1Score} player2Score={player2Score} tieScore={tieScore}/>
         </Container>
       </div>
     </ThemeProvider>

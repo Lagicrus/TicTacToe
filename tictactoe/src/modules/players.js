@@ -5,11 +5,11 @@ import PropTypes from "prop-types";
 
 const {row} = styles;
 
-function Players({player1Score, player2Score}) {
+function Players({player1Score, player2Score, tieScore}) {
   return (
     <div className={row}>
       <Player number="1" name="X" score={player1Score}/>
-      <Player tie score={0}/>
+      <Player tie score={tieScore}/>
       <Player number="2" name="0" score={player2Score}/>
     </div>
   );
@@ -17,7 +17,8 @@ function Players({player1Score, player2Score}) {
 
 Players.propTypes = {
   player1Score: PropTypes.number.isRequired,
-  player2Score: PropTypes.number.isRequired
+  player2Score: PropTypes.number.isRequired,
+  tieScore: PropTypes.number.isRequired
 };
 
 export default Players;
