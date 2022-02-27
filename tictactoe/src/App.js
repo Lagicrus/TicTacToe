@@ -166,7 +166,7 @@ function App() {
             setIs1PlayerMode={setIs1PlayerMode}
             resetBoard={resetBoard}
           />
-          <Board handlePlayClick={handlePlayClick} items={items}/>
+          <Board handlePlayClick={handlePlayClick} items={items} disabled={is1PlayerMode && !isPlayer1Turn}/>
           <Players player1Score={player1Score} player2Score={player2Score} tieScore={tieScore}/>
         </Container>
       </div>

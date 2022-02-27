@@ -16,24 +16,24 @@ const Row = styled("div")({
   marginBottom: 10
 });
 
-function Board({handlePlayClick, items}) {
+function Board({handlePlayClick, items, disabled}) {
   return (
     <div>
       <ColouredBack>
         <Row>
-          <Cell handlePlayClick={handlePlayClick} row={0} column={0} items={items}/>
-          <Cell handlePlayClick={handlePlayClick} row={0} column={1} items={items}/>
-          <Cell handlePlayClick={handlePlayClick} row={0} column={2} items={items}/>
+          <Cell handlePlayClick={handlePlayClick} row={0} column={0} items={items} disabled={disabled}/>
+          <Cell handlePlayClick={handlePlayClick} row={0} column={1} items={items} disabled={disabled}/>
+          <Cell handlePlayClick={handlePlayClick} row={0} column={2} items={items} disabled={disabled}/>
         </Row>
         <Row>
-          <Cell handlePlayClick={handlePlayClick} row={1} column={0} items={items}/>
-          <Cell handlePlayClick={handlePlayClick} row={1} column={1} items={items}/>
-          <Cell handlePlayClick={handlePlayClick} row={1} column={2} items={items}/>
+          <Cell handlePlayClick={handlePlayClick} row={1} column={0} items={items} disabled={disabled}/>
+          <Cell handlePlayClick={handlePlayClick} row={1} column={1} items={items} disabled={disabled}/>
+          <Cell handlePlayClick={handlePlayClick} row={1} column={2} items={items} disabled={disabled}/>
         </Row>
         <Row>
-          <Cell handlePlayClick={handlePlayClick} row={2} column={0} items={items}/>
-          <Cell handlePlayClick={handlePlayClick} row={2} column={1} items={items}/>
-          <Cell handlePlayClick={handlePlayClick} row={2} column={2} items={items}/>
+          <Cell handlePlayClick={handlePlayClick} row={2} column={0} items={items} disabled={disabled}/>
+          <Cell handlePlayClick={handlePlayClick} row={2} column={1} items={items} disabled={disabled}/>
+          <Cell handlePlayClick={handlePlayClick} row={2} column={2} items={items} disabled={disabled}/>
         </Row>
       </ColouredBack>
     </div>
@@ -42,7 +42,8 @@ function Board({handlePlayClick, items}) {
 
 Board.propTypes = {
   handlePlayClick: PropTypes.func.isRequired,
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  disabled: PropTypes.bool.isRequired
 };
 
 export default Board;

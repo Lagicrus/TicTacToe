@@ -15,8 +15,11 @@ const ColouredBox = styled(Box)(({theme}) => ({
   position: "relative"
 }));
 
-function Cell({handlePlayClick, row, column, items}) {
+function Cell({handlePlayClick, row, column, items, disabled}) {
   const onClick = () => {
+    if(disabled) {
+      return;
+    }
     handlePlayClick(row, column);
   };
 
@@ -41,7 +44,8 @@ Cell.propTypes = {
   handlePlayClick: PropTypes.func.isRequired,
   row: PropTypes.number.isRequired,
   column: PropTypes.number.isRequired,
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  disabled: PropTypes.bool.isRequired
 };
 
 export default Cell;
