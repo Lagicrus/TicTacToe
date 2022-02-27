@@ -44,29 +44,52 @@ function App() {
     }
   };
 
+  function winHandling(row) {
+    if(allEqual(row)) {
+      if(row.includes(0)) {
+        return false;
+      }
+      if (row[0] === 1) {
+        setPlayer1Score(player1Score + 1);
+      } else if (row[0] === 2) {
+        setPlayer2Score(player2Score + 1);
+      }
+
+      setPopupMessage(`Player ${row[0]} won!`);
+      setTimeout(() => {
+        setItems(defaultItems);
+        setIsPlayer1Turn(true);
+        setPopupMessage("");
+      }, 2000);
+      return true;
+    }
+    return false;
+  }
+
   useEffect(() => {
     if(items.toString() === defaultItems.toString()) {
       return;
     }
+    let anyoneWon = false;
+
+    const diagTLBR = [items[0][0], items[1][1], items[2][2]];
+    const diagTRBL = [items[0][2], items[1][1], items[2][0]];
+
     for (const row of items) {
       if(row.includes(0)) {
         continue;
       }
-      if(allEqual(row)) {
-        if (row[0] === 1) {
-          setPlayer1Score(player1Score + 1);
-        } else if (row[0] === 2) {
-          setPlayer2Score(player2Score + 1);
-        }
 
-        setPopupMessage(`Player ${row[0]} won!`);
-        setTimeout(() => {
-          setItems(defaultItems);
-          setIsPlayer1Turn(true);
-          setPopupMessage("");
-        }, 2000);
+      anyoneWon = winHandling(row);
+      if(anyoneWon) {
+        return;
       }
     }
+    anyoneWon = winHandling(diagTLBR);
+    if(anyoneWon) {
+      return;
+    }
+    anyoneWon = winHandling(diagTRBL);
   }, [items]);
 
   return (
