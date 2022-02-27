@@ -121,15 +121,17 @@ function App() {
 
   useEffect(() => {
     if(!is1PlayerMode && !isPlayer1Turn) {
-      while(true) {
-        const randomRow = Math.floor(Math.random() * 3);
-        const randomCol = Math.floor(Math.random() * 3);
-        if(items[randomRow][randomCol] === 0) {
-          handlePlayClick(randomRow, randomCol);
-          setIsPlayer1Turn(true);
-          break;
+      setTimeout(() => {
+        while(true) {
+          const randomRow = Math.floor(Math.random() * 3);
+          const randomCol = Math.floor(Math.random() * 3);
+          if(items[randomRow][randomCol] === 0) {
+            handlePlayClick(randomRow, randomCol);
+            setIsPlayer1Turn(true);
+            break;
+          }
         }
-      }
+      }, 500);
     }
     
   }, [isPlayer1Turn, is1PlayerMode]);
