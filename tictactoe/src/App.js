@@ -23,6 +23,7 @@ function App() {
   const [items, setItems] = React.useState([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
   const [popupMessage, setPopupMessage] = React.useState("");
   const [is1PlayerMode, setIs1PlayerMode] = React.useState(false);
+  const [checking, setChecking] = React.useState(false);
 
   const defaultItems = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 
@@ -32,6 +33,7 @@ function App() {
 
   const handlePlayClick = (row, col) => {
     if (items[row][col] === 0) {
+      setChecking(true);
       setItems(
         items.map((itemsRow, rowIndex) =>
           itemsRow.map((itemsCol, colIndex) => {
@@ -52,6 +54,7 @@ function App() {
       setItems(defaultItems);
       setIsPlayer1Turn(true);
       setPopupMessage("");
+      setChecking(false);
     }, 2000);
   }
 
@@ -81,6 +84,7 @@ function App() {
       return;
     }
     let anyoneWon = false;
+    setChecking(true);
 
     const diagTLBR = [items[0][0], items[1][1], items[2][2]];
     const diagTRBL = [items[0][2], items[1][1], items[2][0]];
@@ -107,10 +111,14 @@ function App() {
       return;
     }
     anyoneWon = winHandling(diagTRBL);
+    if(anyoneWon) {
+      return;
+    }
 
     if(!anyoneWon) {
       for(const row of items) {
         if(row.includes(0)) {
+          setChecking(false);
           return;
         }
       }
@@ -120,7 +128,7 @@ function App() {
   }, [items]);
 
   useEffect(() => {
-    if(is1PlayerMode && !isPlayer1Turn) {
+    if(is1PlayerMode && !isPlayer1Turn && !checking) {
       setTimeout(() => {
         while(true) {
           const randomRow = Math.floor(Math.random() * 3);
@@ -138,7 +146,7 @@ function App() {
       }, 500);
     }
     
-  }, [isPlayer1Turn, is1PlayerMode]);
+  }, [isPlayer1Turn, is1PlayerMode, checking]);
 
   return (
     <ThemeProvider theme={theme}>
