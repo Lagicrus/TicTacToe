@@ -5,6 +5,7 @@ import Board from "./modules/board";
 import styles from "./styles.module.css";
 import Players from "./modules/players";
 import CurrentPlayer from "./modules/currentPlayer";
+import PopupMessage from "./modules/popupMessage";
 
 const {center} = styles;
 
@@ -19,6 +20,7 @@ function App() {
   const [player2Score, setPlayer2Score] = React.useState(0);
   const [isPlayer1Turn, setIsPlayer1Turn] = React.useState(true);
   const [items, setItems] = React.useState([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
+  const [popupMessage, setPopupMessage] = React.useState("");
 
   const defaultItems = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 
@@ -57,8 +59,12 @@ function App() {
           setPlayer2Score(player2Score + 1);
         }
 
-        setItems(defaultItems);
-        setIsPlayer1Turn(true);
+        setPopupMessage(`Player ${row[0]} won!`);
+        setTimeout(() => {
+          setItems(defaultItems);
+          setIsPlayer1Turn(true);
+          setPopupMessage("");
+        }, 2000);
       }
     }
   }, [items]);
@@ -67,6 +73,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline/>
       <div className={center}>
+        <PopupMessage popupMessage={popupMessage}/>
         <Container maxWidth="md">
           <CurrentPlayer isPlayer1Turn={isPlayer1Turn}/>
           <Board handlePlayClick={handlePlayClick} items={items}/>
