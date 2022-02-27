@@ -22,6 +22,7 @@ function App() {
   const [isPlayer1Turn, setIsPlayer1Turn] = React.useState(true);
   const [items, setItems] = React.useState([[0, 0, 0], [0, 0, 0], [0, 0, 0]]);
   const [popupMessage, setPopupMessage] = React.useState("");
+  const [is1PlayerMode, setIs1PlayerMode] = React.useState(false);
 
   const defaultItems = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 
@@ -118,13 +119,28 @@ function App() {
     drawHandling();
   }, [items]);
 
+  useEffect(() => {
+    if(!is1PlayerMode && !isPlayer1Turn) {
+      while(true) {
+        const randomRow = Math.floor(Math.random() * 3);
+        const randomCol = Math.floor(Math.random() * 3);
+        if(items[randomRow][randomCol] === 0) {
+          handlePlayClick(randomRow, randomCol);
+          setIsPlayer1Turn(true);
+          break;
+        }
+      }
+    }
+    
+  }, [isPlayer1Turn, is1PlayerMode]);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline/>
       <div className={center}>
         <PopupMessage popupMessage={popupMessage}/>
         <Container maxWidth="md">
-          <CurrentPlayer isPlayer1Turn={isPlayer1Turn}/>
+          <CurrentPlayer isPlayer1Turn={isPlayer1Turn} is1PlayerMode={is1PlayerMode} setIs1PlayerMode={setIs1PlayerMode}/>
           <Board handlePlayClick={handlePlayClick} items={items}/>
           <Players player1Score={player1Score} player2Score={player2Score} tieScore={tieScore}/>
         </Container>
