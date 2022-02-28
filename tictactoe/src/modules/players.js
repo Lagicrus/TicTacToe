@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 const {row} = styles;
 
+// Wrapper for displaying the current players and their scores
 function Players({player1Score, player2Score, tieScore}) {
   return (
     <div className={row}>

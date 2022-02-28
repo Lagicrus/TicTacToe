@@ -18,6 +18,9 @@ const StyledIconButton = styled(IconButton)({
   transform: "translateY(-50%)"
 });
 
+// Handles displaying the current players turn
+// Handles the reset button if needed
+// Handles toggling to 2P or 1P mode
 function TitleBar({isPlayer1Turn, is1PlayerMode, setIs1PlayerMode, resetBoard}) {
   const md = useMediaQuery((theme) => theme.breakpoints.up("md"));
   const onClick = () => {

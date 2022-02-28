@@ -29,6 +29,7 @@ function App() {
 
   const defaultItems = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 
+  // Reset the game
   function resetBoard() {
     setItems(defaultItems);
     setIsPlayer1Turn(true);
@@ -37,6 +38,7 @@ function App() {
     setTieScore(0);
   }
 
+  // Handles a user(or computer) move
   const handlePlayClick = (row, col) => {
     if (items[row][col] === 0) {
       setChecking(true);
@@ -54,6 +56,8 @@ function App() {
     }
   };
 
+  // Handles the popup message handler as a wrapper function
+  // To reduce duplicated code in other places
   function popupHandler(message) {
     setPopupMessage(message);
     setTimeout(() => {
@@ -64,10 +68,12 @@ function App() {
     }, 2000);
   }
 
+  // Handles drawing
   function drawHandling() {
     popupHandler("Draw!");
   }
 
+  // Handles checking if a given row is a "win"
   function winHandling(row) {
     if(allEqual(row)) {
       if(row.includes(0)) {
@@ -85,6 +91,7 @@ function App() {
     return false;
   }
 
+  // When a move is made, iterate through all possible win directions
   useEffect(() => {
     if(items.toString() === defaultItems.toString()) {
       return;
@@ -92,6 +99,7 @@ function App() {
     let anyoneWon = false;
     setChecking(true);
 
+    // Gets the two diagonal directions
     const diagTLBR = [items[0][0], items[1][1], items[2][2]];
     const diagTRBL = [items[0][2], items[1][1], items[2][0]];
 
@@ -133,6 +141,7 @@ function App() {
     drawHandling();
   }, [items]);
 
+  // Handles the computer's move if enabled
   useEffect(() => {
     if(is1PlayerMode && !isPlayer1Turn && !checking) {
       setTimeout(() => {
@@ -145,6 +154,7 @@ function App() {
             break;
           }
 
+          // Fail-over to check if the board is full to break the loop
           if(!items[0].includes(0) && !items[1].includes(0) && !items[2].includes(0)) {
             break;
           }

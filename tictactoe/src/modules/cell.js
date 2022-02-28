@@ -15,6 +15,8 @@ const ColouredBox = styled(Box)(({theme}) => ({
   position: "relative"
 }));
 
+// Sets up the cell/block/square component which actually displays the placed marker
+// And deals with clicking
 function Cell({handlePlayClick, row, column, items, disabled}) {
   const onClick = () => {
     if(disabled) {
@@ -25,6 +27,7 @@ function Cell({handlePlayClick, row, column, items, disabled}) {
 
   const currentCell = items[row][column];
 
+  // Change the size of the cells  based on screen size
   const md = useMediaQuery((theme) => theme.breakpoints.up("md"));
   const sm = useMediaQuery((theme) => theme.breakpoints.only("sm"));
   const xsm = useMediaQuery((theme) => theme.breakpoints.only("xs"));

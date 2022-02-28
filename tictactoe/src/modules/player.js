@@ -3,6 +3,7 @@ import {useMediaQuery} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 
+// Displays the current player, and their score
 function Player({name, score, number, tie}) {
   const md = useMediaQuery((theme) => theme.breakpoints.up("md"));
 

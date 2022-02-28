@@ -14,6 +14,8 @@ const style = {
   boxShadow: 24
 };
 
+// Popup message component
+// Displays the win/tie message
 function PopupMessage({popupMessage}) {
   return (
     <Modal

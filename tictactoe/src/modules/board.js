@@ -16,6 +16,7 @@ const Row = styled("div")({
   marginBottom: 10
 });
 
+// Sets up the play board
 function Board({handlePlayClick, items, disabled}) {
   return (
     <div>
